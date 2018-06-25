@@ -67,7 +67,7 @@ package EmailInteractionServiceComponent {
         logger.info("Reading recaptcha secret " + secret)
 
         logger.info("Email interaction summary received " + summary)
-        val ret = actorRef ? RecaptchaRequest(secret, summary.response, "")
+        val ret = actorRef ? RecaptchaRequest(secret.trim, summary.response.trim, "")
         val result = Await.result(ret, timeout duration)
 
         if (result == true) {
@@ -80,5 +80,6 @@ package EmailInteractionServiceComponent {
       }
     }
   }
+
 
 }

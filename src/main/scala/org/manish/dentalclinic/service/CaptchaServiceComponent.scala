@@ -19,11 +19,11 @@ package CaptchaServiceComponent {
 
   case class RecaptchaRequest(secret: String, response: String, remoteip: String)
 
-  case class RecaptchaResponse(success: Boolean, errorcodes: List[String])
+  case class RecaptchaResponse(success: Boolean)
 
   trait CaptchaJson extends SprayJsonSupport with DefaultJsonProtocol {
     implicit val recaptchaRequestJson = jsonFormat3(RecaptchaRequest)
-    implicit val recaptchaResponseJson = jsonFormat(RecaptchaResponse, "success", "error-codes")
+    implicit val recaptchaResponseJson = jsonFormat(RecaptchaResponse, "success")
   }
 
   object CaptchaActor {
