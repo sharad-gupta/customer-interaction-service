@@ -12,26 +12,22 @@ import scala.concurrent.duration._
 import akka.pattern._
 import akka.http.scaladsl.model.headers._
 import akka.http.scaladsl.model.HttpMethods._
+import com.typesafe.config.{Config, ConfigFactory}
 
 class EmailInteractionController(implicit system: ActorSystem) extends LogUtils with EmailInteractionJson {
 
   val actorRef = system.actorOf(EmailInteractionActor.props)
-  implicit val timeout = Timeout(20.seconds)
+  implicit val timeout = Timeout(10.seconds)
 
-  val corsResponseHeaders = List(
-    `Access-Control-Allow-Origin`.*,
-    `Access-Control-Allow-Headers`("Content-Type"),
-    `Access-Control-Allow-Methods`(OPTIONS, POST, PUT, GET, DELETE)
-  )
+  def config: Config = ConfigFactory.load()
 
   def emailInteractionRoute: Route = {
     path("interaction" / "email") {
       options {
-        logger.info("Options request received")
-        complete(HttpResponse(StatusCodes.OK).
-          withHeaders(`Access-Control-Allow-Methods`(OPTIONS, POST, PUT, GET, DELETE),
-            `Access-Control-Allow-Origin`.*,
-            `Access-Control-Allow-Headers`("Content-Type")))
+        cors {
+          logger.info("Options request received")
+          complete(HttpResponse(StatusCodes.OK))
+        }
       } ~
         post {
           cors {
@@ -46,6 +42,9 @@ class EmailInteractionController(implicit system: ActorSystem) extends LogUtils 
                       case ErrorCodes.E20015 => {
                         complete(StatusCodes.BadRequest, status)
                       }
+                      case ErrorCodes.E20018 => {
+                        complete(StatusCodes.InternalServerError, status)
+                      }
                     }
                   }
                 }
@@ -56,6 +55,8 @@ class EmailInteractionController(implicit system: ActorSystem) extends LogUtils 
   }
 
   def cors: Directive0 = {
-    respondWithHeaders()
+    respondWithHeaders(`Access-Control-Allow-Origin`(config.getString("access.control.allow.origin")),
+      `Access-Control-Allow-Headers`("Origin", "X-Requested-With", "Content-Type", "Accept"),
+      `Access-Control-Allow-Methods`(OPTIONS, POST, PUT, GET, DELETE))
   }
 }

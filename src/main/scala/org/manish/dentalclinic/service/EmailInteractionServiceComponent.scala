@@ -15,12 +15,12 @@ package EmailInteractionServiceComponent {
   import akka.stream.ActorMaterializer
   import akka.util.Timeout
   import com.typesafe.config.{Config, ConfigFactory}
-  import org.manish.dentalclinic.service.CaptchaServiceComponent.{CaptchaActor, RecaptchaRequest}
+  import org.manish.dentalclinic.service.CaptchaServiceComponent.{CaptchaActor, DownstreamApiError, RecaptchaRequest}
   import org.manish.dentalclinic.service.EmailInteractionServiceComponent.ErrorCodes.ErrorCodes
   import spray.json.{DeserializationException, JsString, JsValue, RootJsonFormat}
 
   import scala.concurrent.Await
-  import scala.util.Success
+  import scala.util.{Failure, Success, Try}
 
   case class EmailSummary(name: String, emailAddress: String, phoneNumber: String, transcript: String, response: String)
 
@@ -37,7 +37,7 @@ package EmailInteractionServiceComponent {
 
   object ErrorCodes extends Enumeration {
     type ErrorCodes = Value
-    val E20012, E20015 = Value
+    val E20012, E20015, E20018 = Value
   }
 
   object EmailInteractionActor {
@@ -55,7 +55,7 @@ package EmailInteractionServiceComponent {
     implicit val system = ActorSystem()
     implicit val mat = ActorMaterializer()
     implicit val ec = system.dispatcher
-    implicit val timeout = Timeout(20.seconds)
+    implicit val timeout = Timeout(10.seconds)
 
     val actorRef = system.actorOf(CaptchaActor.props)
 
@@ -67,19 +67,26 @@ package EmailInteractionServiceComponent {
         logger.info("Reading recaptcha secret " + secret)
 
         logger.info("Email interaction summary received " + summary)
-        val ret = actorRef ? RecaptchaRequest(secret.trim, summary.response.trim, "")
-        val result = Await.result(ret, timeout duration)
-
-        if (result == true) {
-          logger.info("Successfully posting the message to customer")
-          sender ! InteractionStatus("Thank you for contacting us, will revert back shortly", ErrorCodes.E20012)
-        } else {
-          logger.info("Failure raised")
-          sender ! InteractionStatus("Please check the data, retry", ErrorCodes.E20015)
+        val ret = actorRef ? RecaptchaRequest(secret.trim, summary.response.trim, "", 1, 1)
+        Try {
+          Await.result(ret, timeout duration)
+        } match {
+          case Success(flag) => {
+            if (flag == true) {
+              logger.info("Successfully posting the message to customer")
+              sender ! InteractionStatus("Thank you for contacting us, will revert back shortly", ErrorCodes.E20012)
+            } else {
+              logger.info("Failure raised")
+              sender ! InteractionStatus("Please check the data, retry", ErrorCodes.E20015)
+            }
+          }
+          case Failure(error) => {
+            logger.error("Failure observed ", error)
+            sender ! InteractionStatus("Downstream Api Error", ErrorCodes.E20018)
+          }
         }
       }
     }
   }
-
 
 }
