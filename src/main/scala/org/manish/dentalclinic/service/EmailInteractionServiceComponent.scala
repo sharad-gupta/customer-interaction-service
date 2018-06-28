@@ -64,7 +64,6 @@ package EmailInteractionServiceComponent {
     override def receive: Receive = {
       case summary: EmailSummary => {
         val secret = config.getString("google.recaptcha.secret")
-        logger.info("Reading recaptcha secret " + secret)
 
         logger.info("Email interaction summary received " + summary)
         val ret = actorRef ? RecaptchaRequest(secret.trim, summary.response.trim, "", 1, 1)

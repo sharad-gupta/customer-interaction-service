@@ -17,7 +17,7 @@ package CaptchaServiceComponent {
   import org.manish.dentalclinic.util.LogUtils
   import spray.json.DefaultJsonProtocol
 
-  import scala.concurrent.Await
+  import scala.concurrent.{Await, ExecutionContext}
   import scala.concurrent.duration._
   import scala.util.{Failure, Success, Try}
 
@@ -34,7 +34,7 @@ package CaptchaServiceComponent {
 
   object CaptchaActor {
     def props: Props = {
-      Props(classOf[CaptchaActor])
+      Props(classOf[CaptchaActor]).withDispatcher("recaptcha-dispatcher")
     }
   }
 
@@ -43,12 +43,12 @@ package CaptchaServiceComponent {
 
     implicit val system = ActorSystem()
     implicit val mat = ActorMaterializer()
-    implicit val ec = system.dispatcher
+    implicit val ec: ExecutionContext = system.dispatcher
     implicit val timeout = Timeout(10.seconds)
 
     override def receive: Receive = {
       case request: RecaptchaRequest => {
-        logger.info("Captcha received " + request)
+        logger.info(Thread.currentThread().getName + " Captcha received " + request)
 
         val httpClient = Http().outgoingConnectionHttps(host = "www.google.com")
         val recaptchaUrl = "/recaptcha/api/siteverify?secret=" + request.secret + "&response=" + request.response + "&remoteip="
@@ -64,7 +64,7 @@ package CaptchaServiceComponent {
             .runWith(Sink.head)
         } yield response
 
-        Try {
+        Try[RecaptchaResponse] {
           Await.result(flowPost, 5 seconds)
         } match {
           case Success(data) => {

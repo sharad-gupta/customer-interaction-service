@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03c532de-bb8f-46eb-bad0-c0a339baa22b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/controller/EmailInteractionController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/controller/EmailInteractionController.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/CaptchaServiceComponent.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/CaptchaServiceComponent.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/EmailInteractionServiceComponent.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/EmailInteractionServiceComponent.scala" afterDir="false" />
     </list>
@@ -29,22 +26,10 @@
       <file leaf-file-name="CaptchaServiceComponent.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/CaptchaServiceComponent.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="52" column="74" lean-forward="true" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
+            <state relative-caret-position="199">
+              <caret line="45" column="57" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
               <folding>
                 <element signature="e#78#114#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmailInteractionController.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/controller/EmailInteractionController.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="57" column="98" lean-forward="true" selection-start-line="57" selection-start-column="71" selection-end-line="57" selection-end-column="98" />
-              <folding>
-                <element signature="e#44#63#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,8 +47,8 @@
       <file leaf-file-name="EmailInteractionServiceComponent.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/EmailInteractionServiceComponent.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="61" column="45" lean-forward="true" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="45" />
+            <state relative-caret-position="119">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
               <folding>
                 <element signature="e#349#378#0" expanded="true" />
               </folding>
@@ -81,9 +66,9 @@
       <list>
         <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/EmailInteractionApplication.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/EmailInteractionServiceComponent.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/CaptchaServiceComponent.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/controller/EmailInteractionController.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/CaptchaServiceComponent.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/EmailInteractionServiceComponent.scala" />
         <option value="$PROJECT_DIR$/src/main/resources/application.conf" />
       </list>
     </option>
@@ -304,12 +289,12 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39862543" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39862543" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980484" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24980484" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -521,32 +506,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/CaptchaServiceComponent.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="52" column="74" lean-forward="true" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
-          <folding>
-            <element signature="e#78#114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/EmailInteractionServiceComponent.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="61" column="45" lean-forward="true" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="45" />
-          <folding>
-            <element signature="e#349#378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/controller/EmailInteractionController.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
           <caret line="57" column="98" lean-forward="true" selection-start-line="57" selection-start-column="71" selection-end-line="57" selection-end-column="98" />
           <folding>
             <element signature="e#44#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/EmailInteractionServiceComponent.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+          <folding>
+            <element signature="e#349#378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/manish/dentalclinic/service/CaptchaServiceComponent.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="45" column="57" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
+          <folding>
+            <element signature="e#78#114#0" expanded="true" />
           </folding>
         </state>
       </provider>
